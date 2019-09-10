@@ -1,0 +1,76 @@
+class Card
+    attr_accessor :rank, :suit
+    def initialize(rank, suit)
+        @rank = rank
+        @suit = suit
+    end
+    
+    def output_card
+        puts "#{@rank} of #{@suit}"
+    end
+    
+    def self.random_card
+        Card.new(rand(10), :spades)
+    end
+end
+
+class Deck
+    def initialize
+       @cards = []
+       $n = 0
+       $m = 1
+       $temp_suit
+       begin
+        begin
+           if $n == 0
+                @cards << Card.new($m, :spades)
+            elsif $n == 1
+                @cards << Card.new($m, :diamonds)
+            elsif $n == 2
+                @cards << Card.new($m, :hearts)
+            elsif $n == 3
+                @cards << Card.new($m, :clubs)
+            end
+            $m +=1
+        end while $m <= 10
+        $n +=1
+        $m = 1
+        
+        if $n == 0
+            @cards << Card.new(:King, :spades)
+            @cards << Card.new(:Queen, :spades)
+            @cards << Card.new(:Jack, :spades)
+        elsif $n == 1
+            @cards << Card.new(:King, :diamonds)
+            @cards << Card.new(:Queen, :diamonds)
+            @cards << Card.new(:Jack, :diamonds)
+        elsif $n == 2
+            @cards << Card.new(:King, :hearts)
+            @cards << Card.new(:Queen, :hearts)
+            @cards << Card.new(:Jack, :hearts)
+        elsif $n == 3
+            @cards << Card.new(:King, :clubs)
+            @cards << Card.new(:Queen, :clubs)
+            @cards << Card.new(:Jack, :clubs)
+        end
+    end while $n < 4 
+
+    end
+    
+    def output
+       @cards.each do |card|
+            card.output_card
+        end
+    end
+    
+    def deal
+        @cards.shift.output_card
+    end
+    
+    def shuffle
+        @cards.shuffle!
+    end
+end
+deck = Deck.new()
+deck.shuffle
+deck.deal

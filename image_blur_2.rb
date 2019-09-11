@@ -49,7 +49,7 @@ class Image
                 image[r][c-1] = 1
             end
             #check the bottom pixel
-            if r + 1 <= image.length
+            if r + 1 < image.length
                 image[r+1][c] = 1
                 
             end
